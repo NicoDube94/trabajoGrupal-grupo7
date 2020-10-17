@@ -24,7 +24,7 @@ public class Universidad {
         Materia laboratorio = new Materia("Laboratorio");
         MateriaData md = new MateriaData(con);
         md.guardarMateria(laboratorio);
-        Alumno jose = new Alumno("Jose",LocalDate.of(14, Month.MARCH, 1998),true);
+        Alumno jose = new Alumno("Jose",LocalDate.of(1998, 05, 14),true);
         AlumnoData ad = new AlumnoData(con);
         ad.guardarAlumno(jose);
         

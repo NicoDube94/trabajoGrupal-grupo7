@@ -33,7 +33,7 @@ public class AlumnoData {
     
     public void guardarAlumno(Alumno alumno){
     
-        String sql="INSERT into alumno (nombre_alumno, fn_alumno,activo) "
+        String sql="INSERT into alumno (nombre, fn_alumno,activo) "
                 + "VALUES(?, ?, ?);";
         
         try{
@@ -44,8 +44,8 @@ public class AlumnoData {
         ps.setBoolean(3, alumno.isActivo());
         
         ps.executeUpdate();
-        
         ResultSet rs = ps.getGeneratedKeys(); 
+        ps.close();
 
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt(1));
