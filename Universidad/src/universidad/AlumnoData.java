@@ -27,6 +27,9 @@ public class AlumnoData {
     public AlumnoData(conexion con) {
         this.con = con.Conectar();
     }
+    public AlumnoData() {
+        
+    }
     private Connection con;
     
     
@@ -38,7 +41,7 @@ public class AlumnoData {
         
         try{
         
-        PreparedStatement ps = con.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1,alumno.getNombreAalumno());
         ps.setDate(2, Date.valueOf(alumno.getFn_alumno()));
         ps.setBoolean(3, alumno.isActivo());
@@ -87,7 +90,7 @@ public class AlumnoData {
     }
     
     public void borrarAlumno(int id){
-        String sql=("DELETE * FROM alumno WHERE idAlumno=?");
+        String sql=("DELETE FROM alumno WHERE idAlumno=?");
         
         try{
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -101,10 +104,10 @@ public class AlumnoData {
         }
     }
    
-    public List<Alumno> ObtenerAlumno(int id){
+    public List<Alumno> ObtenerAlumnos(){
         List<Alumno> Alumnos=new ArrayList();
         Alumno alumno=null;
-        String sql=("SELECT * FROM materia WHERE idMateria=?");
+        String sql=("SELECT * FROM alumno");
         
         try{
             PreparedStatement ps = con.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
@@ -112,6 +115,7 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
             ps.close();
             while(rs.next()){
+                alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setNombreAlumno(rs.getString("nombre"));
                 alumno.setFn_alumno(rs.getDate("fn_alumno").toLocalDate());
@@ -120,26 +124,27 @@ public class AlumnoData {
             }
             con.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error al guardar materia");
+            JOptionPane.showMessageDialog(null,"Error al obtener alumno");
         }
         return Alumnos;
     }
     
-    public void ActualizarMateria(Materia materia){
-        String sql="UPDATE materia SET nombre=? WHERE idAlumno=?"
-                + "VALUES(?);";
+    public void ActualizarAlumno(Alumno alumno){
+        String sql="UPDATE alumno SET nombre=?, fn_alumno=?, activo=? WHERE idAlumno=?";
         
         try{
             PreparedStatement ps = con.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getIdMateria());
+            ps.setString(1, alumno.getNombreAalumno());
+            ps.setDate(2, Date.valueOf(alumno.getFn_alumno()));
+            ps.setBoolean(3, alumno.isActivo());
+            ps.setInt(4, alumno.getIdAlumno());
             ps.executeUpdate();
             
             ps.close();
             con.close();
             
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error al actualizar materia");
+            JOptionPane.showMessageDialog(null,"Error al actualizar alumno");
         }
     }
 

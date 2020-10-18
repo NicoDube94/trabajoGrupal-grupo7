@@ -25,6 +25,9 @@ public class MateriaData {
     public MateriaData(conexion con) {
         this.con = con.Conectar();
     }
+    public MateriaData() {
+        
+    }
     private Connection con;
     
     
@@ -89,7 +92,7 @@ public class MateriaData {
         }
     }
     
-    public Set<Materia> ObtenerMateria(int id){
+    public Set<Materia> ObtenerMateria(){
         Set<Materia> materias=new HashSet();
         Materia materia=null;
         String sql=("SELECT * FROM materia WHERE idMateria=?");
