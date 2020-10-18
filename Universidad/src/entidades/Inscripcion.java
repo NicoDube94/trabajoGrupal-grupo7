@@ -11,19 +11,19 @@ package entidades;
  */
 public class Inscripcion {
 
-    public Materia getIdMateria() {
+    public Materia getMateria() {
         return idMateria;
     }
 
-    public void setIdMateria(Materia idMateria) {
+    public void setMateria(Materia idMateria) {
         this.idMateria = idMateria;
     }
 
-    public Alumno getIdAlumno() {
+    public Alumno getAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Alumno idAlumno) {
+    public void setAlumno(Alumno idAlumno) {
         this.idAlumno = idAlumno;
     }
 
@@ -54,6 +54,19 @@ public class Inscripcion {
         this.idMateria = idMateria;
         this.idAlumno = idAlumno;
         this.calificacion = calificacion;
+    }
+    public Inscripcion(){
+        
+    }
+
+    public Inscripcion(Materia idMateria, Alumno idAlumno) {
+        this.idMateria = idMateria;
+        this.idAlumno = idAlumno;
+    }
+
+    @Override
+    public String toString() {
+        return "La inscripcion es: " + idInscripcion;
     }
     private Materia idMateria;
     private Alumno idAlumno;
