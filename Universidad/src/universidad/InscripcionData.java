@@ -53,9 +53,7 @@ public class InscripcionData {
    }
     public List<Inscripcion> obtenerInscripciones() {
         List<Inscripcion> inscripciones = new ArrayList<>();
-        String sql = "SELECT * FROM inscripcion ;";
-        AlumnoData alumnoData=null;
-        MateriaData materiaData=null;
+        String sql = "SELECT * FROM alumno A, materia M, inscripcion C WHERE A.idAlumno=C.idAlumno AND M.idMateria=C.idMateria;";
         Alumno alumno=null;
         Materia materia=null;
         try {
@@ -63,16 +61,20 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
             ps.close();
             while(rs.next()){
-                materiaData=new MateriaData();
-                alumnoData=new AlumnoData();
-                alumnoData.buscarAlumno(rs.getInt("idAlumno"));
-                materiaData.buscarMateria(rs.getInt("idMateria"));
-                Inscripcion inscripcion=new Inscripcion(); 
+                alumno= new Alumno();
+                materia=new Materia();
+                Inscripcion inscripcion=new Inscripcion();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setNombreAlumno(rs.getString("nombre"));
+                alumno.setFn_alumno(rs.getDate("fn_alumno").toLocalDate());
+                alumno.setActivo(rs.getBoolean("activo"));
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
                 inscripcion.setAlumno(alumno);
                 inscripcion.setMateria(materia);
                 inscripcion.setCalificacion(rs.getDouble("califiicacion"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-
+                inscripciones.add(inscripcion);
             }
             
             con.close();
@@ -83,19 +85,27 @@ public class InscripcionData {
     }
  public List<Inscripcion>obtenerInscripcionesXAlumno(int id){
        List<Inscripcion> inscripciones=new ArrayList<>();
-       String sql= "SELECT * FROM inscripcion WHERE idAlumno=?";
+       Alumno alumno=null;
+       Materia materia=null;
+       String sql= "SELECT * FROM alumno a, inscripcion i WHERE a.idAlumno=? AND i.idAlumno=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
+            ps.setInt(2, id);
             ResultSet rs = ps.executeQuery();
             ps.close();
             while(rs.next()){
                 Inscripcion inscripcion=new Inscripcion();
-                
-                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-                inscripcion.getAlumno().setIdAlumno(rs.getInt("idAlumno"));
-                inscripcion.getMateria().setIdMateria(rs.getInt("idMateria"));
+                alumno= new Alumno();
+                materia=new Materia();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setNombreAlumno(rs.getString("nombre"));
+                alumno.setFn_alumno(rs.getDate("fn_alumno").toLocalDate());
+                alumno.setActivo(rs.getBoolean("activo"));
+                inscripcion.setAlumno(alumno);
+                inscripcion.setMateria(materia);
                 inscripcion.setCalificacion(rs.getDouble("califiicacion"));
+                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripciones.add(inscripcion);
             }
             
