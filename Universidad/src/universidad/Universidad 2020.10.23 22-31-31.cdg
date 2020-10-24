@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Universidad">
+  <ClassDiagramComponents>
+    <Class name="Alumno" package="entidades" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="idAlumno" type="int" visibility="private"/>
+        <Field name="nombreAalumno" type="String" visibility="private"/>
+        <Field name="fn_alumno" type="LocalDate" visibility="private"/>
+        <Field name="activo" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idAlumno"/>
+          <Argument type="String" name="nombreAalumno"/>
+          <Argument type="LocalDate" name="fn_alumno"/>
+          <Argument type="boolean" name="activo"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreAalumno"/>
+          <Argument type="LocalDate" name="fn_alumno"/>
+          <Argument type="boolean" name="activo"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getIdAlumno" returnType="int" visibility="public"/>
+        <Method name="setIdAlumno" returnType="void" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="getNombreAalumno" returnType="String" visibility="public"/>
+        <Method name="setNombreAlumno" returnType="void" visibility="public">
+          <Argument type="String" name="nombreAalumno"/>
+        </Method>
+        <Method name="getFn_alumno" returnType="LocalDate" visibility="public"/>
+        <Method name="setFn_alumno" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fn_alumno"/>
+        </Method>
+        <Method name="isActivo" returnType="boolean" visibility="public"/>
+        <Method name="setActivo" returnType="void" visibility="public">
+          <Argument type="boolean" name="activo"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Inscripcion" package="entidades" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="idMateria" type="Materia" visibility="private"/>
+        <Field name="idAlumno" type="Alumno" visibility="private"/>
+        <Field name="calificacion" type="double" visibility="private"/>
+        <Field name="idInscripcion" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Materia" name="idMateria"/>
+          <Argument type="Alumno" name="idAlumno"/>
+          <Argument type="double" name="calificacion"/>
+          <Argument type="int" name="idInscripcion"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Materia" name="idMateria"/>
+          <Argument type="Alumno" name="idAlumno"/>
+          <Argument type="double" name="calificacion"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Materia" name="idMateria"/>
+          <Argument type="Alumno" name="idAlumno"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMateria" returnType="Materia" visibility="public"/>
+        <Method name="setMateria" returnType="void" visibility="public">
+          <Argument type="Materia" name="idMateria"/>
+        </Method>
+        <Method name="getAlumno" returnType="Alumno" visibility="public"/>
+        <Method name="setAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="idAlumno"/>
+        </Method>
+        <Method name="getCalificacion" returnType="double" visibility="public"/>
+        <Method name="setCalificacion" returnType="void" visibility="public">
+          <Argument type="double" name="calificacion"/>
+        </Method>
+        <Method name="getIdInscripcion" returnType="int" visibility="public"/>
+        <Method name="setIdInscripcion" returnType="void" visibility="public">
+          <Argument type="int" name="idInscripcion"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Materia" package="entidades" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="idMateria" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="idMateria"/>
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getIdMateria" returnType="int" visibility="public"/>
+        <Method name="setIdMateria" returnType="void" visibility="public">
+          <Argument type="int" name="idMateria"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AlumnoData" package="universidad" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="con" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="conexion" name="con"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="guardarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="Alumno" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarAlumno" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="ObtenerAlumnos" returnType="List&lt;Alumno&gt;" visibility="public"/>
+        <Method name="ActualizarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="conexion" package="universidad" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="String" visibility="public"/>
+        <Field name="url" type="String" visibility="public"/>
+        <Field name="user" type="String" visibility="public"/>
+        <Field name="pass" type="String" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Conectar" returnType="Connection" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="InscripcionData" package="universidad" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="con" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="conexion" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="guardarInscripcion" returnType="void" visibility="public">
+          <Argument type="Inscripcion" name="inscripcion"/>
+        </Method>
+        <Method name="obtenerInscripciones" returnType="List&lt;Inscripcion&gt;" visibility="public"/>
+        <Method name="obtenerInscripcionesXAlumno" returnType="List&lt;Inscripcion&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="obtenerCalificacion" returnType="double" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="ActualizarInscripcion" returnType="void" visibility="public">
+          <Argument type="int" name="calificacion"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarInscripcion" returnType="void" visibility="public">
+          <Argument type="int" name="idInscripcion"/>
+        </Method>
+        <Method name="actualizarInscripcion" returnType="void" visibility="public">
+          <Argument type="Inscripcion" name="inscripcion"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="Alumno" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="buscarMateria" returnType="Materia" visibility="public">
+          <Argument type="int" name="idMateria"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MateriaData" package="universidad" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="con" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="conexion" name="con"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="guardarMateria" returnType="void" visibility="public">
+          <Argument type="Materia" name="materia"/>
+        </Method>
+        <Method name="buscarMateria" returnType="Materia" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarMateria" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="ObtenerMaterias" returnType="Set&lt;Materia&gt;" visibility="public"/>
+        <Method name="ActualizarMateria" returnType="void" visibility="public">
+          <Argument type="Materia" name="materia"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Universidad" package="universidad" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="universidad.AlumnoData" target="entidades.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="universidad.InscripcionData" target="entidades.Inscripcion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="universidad.InscripcionData" target="entidades.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idMateria" source="entidades.Inscripcion" target="entidades.Materia" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="entidades.Inscripcion" target="entidades.Materia" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idAlumno" source="entidades.Inscripcion" target="entidades.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="entidades.Inscripcion" target="entidades.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="universidad.InscripcionData" target="entidades.Materia" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="universidad.MateriaData" target="entidades.Materia" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

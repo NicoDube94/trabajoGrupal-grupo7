@@ -55,7 +55,7 @@ public class MateriaData {
     }
     
     public Materia buscarMateria(int id){
-        Materia materia=null;
+        Materia materia=new Materia();
         String sql=("SELECT * FROM materia WHERE idMateria=?");
         
         try{
@@ -92,7 +92,7 @@ public class MateriaData {
         }
     }
     
-    public Set<Materia> ObtenerMateria(){
+    public Set<Materia> ObtenerMaterias(){
         Set<Materia> materias=new HashSet();
         Materia materia=null;
         String sql=("SELECT * FROM materia WHERE idMateria=?");

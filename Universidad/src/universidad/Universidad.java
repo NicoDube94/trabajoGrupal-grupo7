@@ -22,23 +22,28 @@ public class Universidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Materia laboratorio = new Materia(20,"Laboratorio3");
+        Materia materia = new Materia();
+        Alumno alumno = new Alumno();
+        //Materia laboratorio = new Materia("Laboratorio11");
         conexion con=new conexion();
-        //MateriaData md = new MateriaData(con);
-        Alumno jose = new Alumno(7,"Josefu",LocalDate.of(1998, 05, 14),true);
-        Alumno pepa = new Alumno("PEPA",LocalDate.of(1998, 05, 11),true);
-        //AlumnoData ad = new AlumnoData(con);
-        //ad.guardarAlumno(jose);
-        //md.guardarMateria(laboratorio);
-        //ad.ActualizarAlumno(pepa);
-        //Inscripcion ins = new Inscripcion(laboratorio,jose,8);
+        MateriaData md = new MateriaData(con);
+        AlumnoData ad = new AlumnoData(con);
         InscripcionData id = new InscripcionData(con);
-        //id.guardarInscripcion(ins);
+        alumno = id.buscarAlumno(8);
+        materia = id.buscarMateria(21);
+        Inscripcion ins = new Inscripcion(materia,alumno,8);
+        
+        //Alumno josefa = new Alumno("Josefa",LocalDate.of(1998, 05, 14),true);
+        //Alumno jose = new Alumno(1,"Jose",LocalDate.of(1998, 05, 11),true);
+        //ad.guardarAlumno(josefa);
+        //md.guardarMateria(laboratorio);
+        //ad.ActualizarAlumno(josefa);
         //id.obtenerInscripciones();
         //System.out.println("Las inscripciones son: "+id.obtenerInscripciones());
-        System.out.println("Las inscripciones son: "+id.obtenerInscripcionesXAlumno(7));
-        
+        //System.out.println("Las inscripciones son: "+id.obtenerInscripcionesXAlumno(7));
+        id.guardarInscripcion(ins);
+        System.out.println("Las inscripciones son: "+materia);
+        System.out.println("Las inscripciones son: "+alumno);
         
         
         

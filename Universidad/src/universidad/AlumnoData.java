@@ -65,7 +65,7 @@ public class AlumnoData {
     }
     
     public Alumno buscarAlumno(int id){
-        Alumno alumno=null;
+        Alumno alumno=new Alumno();
         String sql=("SELECT * FROM alumno WHERE idAlumno=?");
         
         try{

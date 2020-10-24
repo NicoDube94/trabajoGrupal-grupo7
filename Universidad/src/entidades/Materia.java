@@ -15,6 +15,11 @@ public class Materia {
         
     }
 
+    @Override
+    public String toString() {
+        return "Materia{" + "nombre=" + nombre + '}';
+    }
+
     public int getIdMateria() {
         return idMateria;
     }
